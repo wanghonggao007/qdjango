@@ -35,6 +35,9 @@
 #include "auth-models.h"
 #include "http-server.h"
 
+////////////////////////
+using namespace std;
+
 class ModelAdminFetcher
 {
 public:
@@ -486,26 +489,29 @@ void AdminController::setupUrls(QDjangoUrlResolver *urls)
 
 int main(int argc, char* argv[])
 {
-    QCoreApplication app(argc, argv);
+    //QCoreApplication app(argc, argv);//w-
     AdminController controller;
 
-    const quint16 port = 8000;
+    const quint16 port = 9000;
 
-    if (argc < 2) {
+    if (false) {
+    //if (argc < 2) {
         usage();
         return EXIT_FAILURE;
     }
 
     QDjangoUrlResolver urls;
-
-    if (!strcmp(argv[1], "runfcgi")) {
+    char* str="runserver";
+    //if (!strcmp(argv[1], "runfcgi")) {
+    if (!strcmp(str, "runfcgi")) {
         QDjangoFastCgiServer *server = new QDjangoFastCgiServer;
         controller.setupUrls(server->urls());
         if (!server->listen(QHostAddress::Any, port)) {
             qWarning("Could not start listening on port %i", port);
             return EXIT_FAILURE;
         }
-    } else if (!strcmp(argv[1], "runserver")) {
+    //} else if (!strcmp(argv[1], "runserver")) {
+    } else if (!strcmp(str, "runserver")) {
         QDjangoHttpServer *server = new QDjangoHttpServer;
         controller.setupUrls(server->urls());
         if (!server->listen(QHostAddress::Any, port)) {
@@ -516,7 +522,11 @@ int main(int argc, char* argv[])
         usage();
         return EXIT_FAILURE;
     }
+    printf("Web service started!!!\n");
+    //return app.exec();//w-
+    while(1){
 
-    return app.exec();
+    }
+    return 0;
 }
 

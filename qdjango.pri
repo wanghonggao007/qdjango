@@ -12,15 +12,15 @@ isEmpty(QDJANGO_LIBRARY_TYPE) {
 
 # Libraries for apps which use QDjango
 QDJANGO_INCLUDEPATH = $$PWD/src/db $$PWD/src/http
-QDJANGO_DB_LIBS = -lqdjango-db
-QDJANGO_HTTP_LIBS = -lqdjango-http
+#QDJANGO_DB_LIBS = -lqdjango-db
+#QDJANGO_HTTP_LIBS = -lqdjango-http
 contains(QDJANGO_LIBRARY_TYPE,staticlib) {
     DEFINES += QDJANGO_STATIC
 } else {
     # Windows needs the major library version
     win32 {
-        QDJANGO_DB_LIBS = -lqdjango-db0
-        QDJANGO_HTTP_LIBS = -lqdjango-http0
+        QDJANGO_DB_LIBS += -LG:/work/GOPATH/src/github.com/wanghonggao007/myqt/TEST002/ -lqdjango-db0
+        QDJANGO_HTTP_LIBS += -LG:/work/GOPATH/src/github.com/wanghonggao007/myqt/TEST003/ -lqdjango-http0
     }
     DEFINES += QDJANGO_SHARED
 }
