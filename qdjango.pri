@@ -19,8 +19,8 @@ contains(QDJANGO_LIBRARY_TYPE,staticlib) {
 } else {
     # Windows needs the major library version
     win32 {
-        QDJANGO_DB_LIBS += -LG:/work/GOPATH/src/github.com/wanghonggao007/myqt/TEST002/ -lqdjango-db0
-        QDJANGO_HTTP_LIBS += -LG:/work/GOPATH/src/github.com/wanghonggao007/myqt/TEST003/ -lqdjango-http0
+        QDJANGO_DB_LIBS +=  -lqdjango-db0
+        QDJANGO_HTTP_LIBS +=  -lqdjango-http0
     }
     DEFINES += QDJANGO_SHARED
 }
